@@ -1,0 +1,15 @@
+pre {
+    line-height: 1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#textInput {
+    width: 100%;           /* Full width */
+    min-height: 150px;      /* Minimum height */
+    padding: 10px;          /* Padding inside the textarea */
+    box-sizing: border-box; /* Include padding and border in element's width/height */
+    font-size: 16px;        /* Font size */
+    resize: none;           /* Disable the default manual resize handle */
+    overflow: hidden;       /* Hide the scrollbar */
+}
