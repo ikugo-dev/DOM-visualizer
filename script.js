@@ -5,7 +5,7 @@ document.getElementById('textForm').addEventListener('submit', async function (e
 
     // Sending the input text to the Go backend via a POST request
     try {
-        const response = await fetch('http://localhost:6969/parse-text', {
+        const response = await fetch('http://localhost:8080/parse-text', {
             method: 'POST',
             headers: {
                 'Content-Type': 'text/plain'
@@ -20,13 +20,3 @@ document.getElementById('textForm').addEventListener('submit', async function (e
         document.getElementById('textOutput').innerText = "Error communicating with the server.";
     }
 });
-
-// async function fetchGoString() {
-//     try {
-//         const response = await fetch('http://localhost:6969/get-string');
-//         const text = await response.text();
-//         document.getElementById('result').innerText += "\n" + text;
-//     } catch (error) {
-//         console.error('Error fetching the string:', error);
-//     }
-// }

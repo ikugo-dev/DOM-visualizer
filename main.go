@@ -9,11 +9,11 @@ import (
 )
 
 func main() {
-	const portName = ":6969"
+	const portName = ":8080"
 	http.Handle("/", http.FileServer(http.Dir("./")))
 	http.HandleFunc("/parse-text", parseDOMHandler)
 
-	log.Printf("Starting server on :%s", portName)
+	log.Printf("Starting server on %s", portName)
 	http.ListenAndServe(portName, nil)
 }
 
@@ -35,7 +35,7 @@ func parseDOMHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func parseDOM(inputText string) string {
-	root := tree.NewTree(tree.NodeString("HTML"))
+	root := tree.NewTree(tree.NodeString("Document"))
 
 	text := strings.Split(inputText, "<")
 
@@ -63,6 +63,7 @@ func parseDOM(inputText string) string {
 		}
 
 	}
+
 	return root.String()
 }
 
