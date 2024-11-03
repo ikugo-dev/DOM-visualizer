@@ -4,15 +4,13 @@ A simple golang parser of any XML-like text.
 
 The output is a tree in plain (unicode) text.
 
-<img src="ss.png" alt="raylib screenshot" width="400"/>
-
 ## Prerequisites
 
 - [Go](https://go.dev).
 
 ## Installation
 
-To get started with this project, clone the repository and compile (or run) using the `go` command.
+To get started with this project, clone the repository and run (or compile, then run) using the `go` command.
 
 ```bash
 git clone https://github.com/ikugox/DOM-Visualizer.git
