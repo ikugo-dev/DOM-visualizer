@@ -1,15 +1,60 @@
-pre {
-    line-height: 1;
-    font-size: 18px;
-    font-weight: bold;
+/* :root { */
+/*     --text: #0b0701; */
+/*     --background: #fefbf8; */
+/*     --primary: #e47a1c; */
+/*     --secondary: #93f189; */
+/*     --accent: #5cec91; */
+/* } */
+
+body {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
 }
 
-#textInput {
-    width: 100%;           /* Full width */
-    min-height: 150px;      /* Minimum height */
-    padding: 10px;          /* Padding inside the textarea */
-    box-sizing: border-box; /* Include padding and border in element's width/height */
-    font-size: 16px;        /* Font size */
-    resize: none;           /* Disable the default manual resize handle */
-    overflow: hidden;       /* Hide the scrollbar */
+pre {
+    font-weight: bold;
+    line-height: 1;
+    font-size: 18px;
+}
+
+#text-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#text-input {
+    line-height: 1;
+    font-size: 14px;
+
+    color: black;
+    background-color: transparent;
+    width: 100%;
+    padding: 10em 2em;
+    padding-top: 2em;
+    /* line-height: 28px; */
+}
+
+.submit-button {
+    width: 255px;
+    margin-top: 1em;
+    border: 2px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 60px;
+    text-align: center;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+.submit-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.submit-button:active {
+  box-shadow: none;
+  transform: translateY(0);
 }

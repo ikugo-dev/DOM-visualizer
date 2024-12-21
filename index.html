@@ -5,19 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>DOM Visualizer</title>
         <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-
         <h1>Input HTML/XML to parse:</h1>
-        <form id="textForm">
-            <label for="textInput">Input Text:</label>
-            <textarea id="textInput" name="textInput" placeholder="Enter your text here..."></textarea>
-            <button type="submit">Submit</button>
+        <form id="text-form">
+            <label for="text-input">Input Text:</label>
+            <textarea id="text-input" placeholder="Enter your text here..." ></textarea>
+            <button class="submit-button" role="button">Submit</button>
         </form>
         
         <h2>Response:</h2>
-        <pre id="textOutput">Waiting for response...</pre>
+        <pre id="text-output">Waiting for response...</pre>
 
         <script src="./script.js"></script>
     </body>

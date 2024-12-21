@@ -1,7 +1,7 @@
-document.getElementById('textForm').addEventListener('submit', async function (event) {
+document.getElementById('text-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const inputText = document.getElementById('textInput').value;
+    const inputText = document.getElementById('text-input').value;
 
     // Sending the input text to the Go backend via a POST request
     try {
@@ -14,9 +14,9 @@ document.getElementById('textForm').addEventListener('submit', async function (e
         });
 
         const data = await response.text();
-        document.getElementById('textOutput').innerText = data; // Display the parsed response
+        document.getElementById('text-output').innerText = data; // Display the parsed response
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('textOutput').innerText = "Error communicating with the server.";
+        document.getElementById('text-output').innerText = "Error communicating with the server.";
     }
 });
