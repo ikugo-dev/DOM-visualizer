@@ -1,3 +1,4 @@
+// BACKEND PARSING
 document.getElementById('text-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -21,18 +22,18 @@ document.getElementById('text-form').addEventListener('submit', async function(e
     }
 });
 
-
+// ZOOM CONTROLS
 const textOutput = document.getElementById('text-output');
 let scale = 1;
 const zoomAmmount = 0.25;
 
 document.getElementById('zoom-in').addEventListener('click', () => {
-    scale = Math.min(scale + zoomAmmount, 5); // Max zoom level
+    scale = Math.min(scale + zoomAmmount, 5);
     textOutput.style.transform = `scale(${scale})`;
 });
 
 document.getElementById('zoom-out').addEventListener('click', () => {
-    scale = Math.max(scale - zoomAmmount, 0.5); // Min zoom level
+    scale = Math.max(scale - zoomAmmount, 0.5);
     textOutput.style.transform = `scale(${scale})`;
 });
 
@@ -41,10 +42,7 @@ document.getElementById('zoom-reset').addEventListener('click', () => {
     textOutput.style.transform = `scale(${scale})`;
 });
 
-
-// Panning functionality
 let isPanning = false;
-let startX = 0, startY = 0, offsetX = 0, offsetY = 0;
 let mouseStartX, mouseStartY;
 let currentPosX = 0, currentPosY = 0;
 
@@ -62,8 +60,6 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
-// Panning functionality
-
 window.addEventListener('mousemove', (e) => {
     if (!isPanning) {
         mouseStartX = e.clientX;
@@ -72,12 +68,12 @@ window.addEventListener('mousemove', (e) => {
         currentPosY = parseInt(textOutput.style.top || "160", 10);
         return;
     }
-    offsetX = currentPosX + e.clientX - mouseStartX;
-    offsetY = currentPosY + e.clientY - mouseStartY;
+    let offsetX = currentPosX + e.clientX - mouseStartX;
+    let offsetY = currentPosY + e.clientY - mouseStartY;
     textOutput.style.left = `${offsetX}px`;
     textOutput.style.top = `${offsetY}px`;
 });
 
-// textOutput.addEventListener('mouseleave', () => {
-//     isPanning = false;
-// });
+textOutput.addEventListener('mouseleave', () => {
+    isPanning = false;
+});
