@@ -1,6 +1,6 @@
 # DOM Visualizer
 
-A simple website with a backend golang parser of any XML-like text.
+A simple website with a backend golang parser for any XML-like text.
 
 This site was made because of a lack of good Document Object Model visualizers and is intended for those learning webdev or those that want to better understand how a certain website is structured. I used this all the time and decided to make it public for everyone because... why not? Hopefully you find it usefull too!
 
