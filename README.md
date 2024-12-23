@@ -2,6 +2,8 @@
 
 A simple golang parser of any XML-like text.
 
+<img src="example.png" alt="website screenshot" width="500"/>
+
 The output is a tree in plain (unicode) text.
 
 ## Prerequisites
