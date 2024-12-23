@@ -46,18 +46,18 @@ document.getElementById('zoom-reset').addEventListener('click', () => {
 let isPanning = false;
 let startX = 0, startY = 0, offsetX = 0, offsetY = 0;
 let mouseStartX, mouseStartY;
-let currentPosX, currentPosY;
+let currentPosX = 0, currentPosY = 0;
 
 window.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
         e.preventDefault();
-        mouseStartX = e.client
         isPanning = true;
     }
 });
 
 window.addEventListener('keyup', (e) => {
     if (e.code === 'Space') {
+        e.preventDefault();
         isPanning = false;
     }
 });
@@ -68,8 +68,8 @@ window.addEventListener('mousemove', (e) => {
     if (!isPanning) {
         mouseStartX = e.clientX;
         mouseStartY = e.clientY;
-        currentPosX = textOutput.style.left;
-        currentPosY = textOutput.style.top;
+        currentPosX = parseInt(textOutput.style.left || "0", 10);
+        currentPosY = parseInt(textOutput.style.top || "160", 10);
         return;
     }
     offsetX = currentPosX + e.clientX - mouseStartX;
