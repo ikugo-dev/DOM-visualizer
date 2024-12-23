@@ -35,7 +35,7 @@ func parseDOMHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func parseDOM(inputText string) string {
-	root := tree.NewTree(tree.NodeString("Document"))
+	root := tree.NewTree(tree.NodeString("document"))
 
 	text := strings.Split(inputText, "<")
 
