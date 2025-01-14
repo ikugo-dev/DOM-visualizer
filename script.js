@@ -33,7 +33,7 @@ document.getElementById('zoom-in').addEventListener('click', () => {
 });
 
 document.getElementById('zoom-out').addEventListener('click', () => {
-    scale = Math.max(scale - zoomAmmount, 0.5);
+    scale = Math.max(scale - zoomAmmount, 0.25);
     textOutput.style.transform = `scale(${scale})`;
 });
 
