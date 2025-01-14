@@ -1,8 +1,9 @@
 // BACKEND PARSING
+const inputText = document.getElementById('text-input').value;
+const textOutput = document.getElementById('text-output');
+
 document.getElementById('text-form').addEventListener('submit', async function(event) {
     event.preventDefault();
-
-    const inputText = document.getElementById('text-input').value;
 
     // Sending the input text to the Go backend via a POST request
     try {
@@ -11,19 +12,17 @@ document.getElementById('text-form').addEventListener('submit', async function(e
             headers: {
                 'Content-Type': 'text/plain'
             },
-            body: inputText // Sending plain text
+            body: inputText // Must be plain text
         });
-
         const data = await response.text();
-        document.getElementById('text-output').innerText = data; // Display the parsed response
+        textOutput.innerText = data;
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('text-output').innerText = "Error communicating with the server.";
+        textOutput.innerText = "Error communicating with the server.";
     }
 });
 
 // ZOOM CONTROLS
-const textOutput = document.getElementById('text-output');
 let scale = 1;
 const zoomAmmount = 0.25;
 
@@ -42,12 +41,17 @@ document.getElementById('zoom-reset').addEventListener('click', () => {
     textOutput.style.transform = `scale(${scale})`;
 });
 
+// PANNING CONTROLS
 let isPanning = false;
 let mouseStartX, mouseStartY;
 let currentPosX = 0, currentPosY = 0;
 
 window.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
+        const form = document.getElementById('text-form');
+        if (form.contains(document.activeElement)) {
+            return;
+        }
         e.preventDefault();
         isPanning = true;
     }
