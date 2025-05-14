@@ -37,13 +37,10 @@ func parseDOMHandler(w http.ResponseWriter, r *http.Request) {
 
 func parseDOM(inputText string) string {
 	root := tree.NewTree(tree.NodeString("document"))
+	tags := regexp.MustCompile("<(.*?)>").FindAllString(inputText, -1)
 
-	text := regexp.MustCompile("<(.*?)>").FindAllString(inputText, -1)
-	log.Printf("text: %v\n", text)
-
-	for _, line := range text {
+	for _, line := range tags {
 		line = line[1 : len(line)-1]
-		log.Printf("line: %v\n", line)
 
 		if line[0] == '/' { // Go up the tree
 			newRoot, _ := root.Parent()
@@ -58,7 +55,7 @@ func parseDOM(inputText string) string {
 			}
 			root = newRoot
 		}
-		if line[len(line)-1] == '/' { // Go up the tree & remove suffix
+		if line[len(line)-1] == '/' { // Go up the tree
 			newRoot, _ := root.Parent()
 			root = newRoot
 		}
