@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/m1gwings/treedrawer/tree"
 	"io"
 	"log"
 	"net/http"
-	"strings"
+	"regexp"
+
+	"github.com/m1gwings/treedrawer/tree"
 )
 
 func main() {
@@ -37,23 +38,19 @@ func parseDOMHandler(w http.ResponseWriter, r *http.Request) {
 func parseDOM(inputText string) string {
 	root := tree.NewTree(tree.NodeString("document"))
 
-	text := strings.Split(inputText, "<")
+	text := regexp.MustCompile("<(.*?)>").FindAllString(inputText, -1)
+	log.Printf("text: %v\n", text)
 
 	for _, line := range text {
-		if line == " " { // Stupid edge case 1
-			continue
-		}
-		textParts := strings.FieldsFunc(line, splitXML)
+		line = line[1 : len(line)-1]
+		log.Printf("line: %v\n", line)
 
-		if len(textParts) == 0 { // Stupid edge case 2
-			continue
-		}
-
-		if string(textParts[0][0]) == "/" { // Go up the tree
+		if line[0] == '/' { // Go up the tree
 			newRoot, _ := root.Parent()
 			root = newRoot
 		} else { // Add child and traverse the tree
-			root.AddChild(tree.NodeString(textParts[0]))
+			tagName := regexp.MustCompile("^\\w+").FindString(line)
+			root.AddChild(tree.NodeString(tagName))
 
 			newRoot, err := root.Child(len(root.Children()) - 1)
 			if err != nil {
@@ -61,12 +58,11 @@ func parseDOM(inputText string) string {
 			}
 			root = newRoot
 		}
-
+		if line[len(line)-1] == '/' { // Go up the tree & remove suffix
+			newRoot, _ := root.Parent()
+			root = newRoot
+		}
 	}
 
 	return root.String()
-}
-
-func splitXML(r rune) bool {
-	return r == ' ' || r == '>'
 }
