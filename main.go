@@ -37,7 +37,7 @@ func parseDOMHandler(w http.ResponseWriter, r *http.Request) {
 
 func parseDOM(inputText string) string {
 	root := tree.NewTree(tree.NodeString("document"))
-	tags := regexp.MustCompile("<(.*?)>").FindAllString(inputText, -1)
+	tags := regexp.MustCompile("<[^!](.*?)>").FindAllString(inputText, -1)
 
 	for _, line := range tags {
 		line = line[1 : len(line)-1]
