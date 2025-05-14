@@ -4,7 +4,7 @@ document.getElementById('text-form').addEventListener('submit', async function(e
 
     // Sending the input text to the Go backend via a POST request
     try {
-        const response = await fetch('http://localhost:8080/parse-text', {
+        const response = await fetch('/parse-text', {
             method: 'POST',
             headers: {
                 'Content-Type': 'text/plain'
